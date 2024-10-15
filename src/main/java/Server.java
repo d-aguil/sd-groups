@@ -12,9 +12,16 @@ public class Server {
 
             MulticastSocket socket = new MulticastSocket();
 
+            int value = 0;
+
+            if (args.length > 0) {
+                value = Integer.parseInt(args[0]);
+            }
+
+
             // Bucle para enviar mensajes
             while (true) {
-                String message = "Mensaje desde el servidor: " + System.currentTimeMillis();
+                String message = "Mensaje desde el servidor: " + value++;
                 byte[] buffer = message.getBytes();
                 DatagramPacket packet = new DatagramPacket(buffer, buffer.length, groupAddress, port);
                 socket.send(packet);
